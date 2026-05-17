@@ -943,12 +943,21 @@ main (int ac, char **av)
 {
     int i;
 
+#ifdef SSBM
+    /* SSB default: generate all five tables (equivalent to -T a). */
+    table = (1 << CUST) |
+            (1 << SUPP) |
+            (1 << PART) |
+            (1 << DATE) |
+            (1 << LINE);
+#else
     table = (1 << CUST) |
             (1 << SUPP) |
             (1 << NATION) |
             (1 << REGION) |
             (1 << PART_PSUPP) |
             (1 << ORDER_LINE);
+#endif
     force = 0;
     insert_segments=0;
     delete_segments=0;
